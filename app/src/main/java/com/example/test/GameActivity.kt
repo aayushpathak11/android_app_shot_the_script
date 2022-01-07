@@ -1,5 +1,6 @@
 package com.example.test
 
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.text.TextRunShaper
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_game.*
 
@@ -16,6 +18,7 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
     private var mQuestionList:ArrayList<Question>?=null
     private var mSelectedOption:Int = 0
     private var mCorrectAnswers:Int=0
+    private var count:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -27,6 +30,23 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         op4.setOnClickListener(this)
         btnsubmit.setOnClickListener(this)
 
+    }
+
+    override fun onBackPressed() {
+        val builder:AlertDialog.Builder =  AlertDialog.Builder(this)
+        builder.setTitle("EXIT..!! ")
+        builder.setIcon(R.drawable.ic_baseline_exit_to_app_24)
+        builder.setMessage("Are you sure you want to RETURN to home screen?\nAll your data will be lost!!")
+        builder.setCancelable(false)
+        builder.setPositiveButton("Yes") { dialoginterface: DialogInterface, i: Int ->
+            finish()
+
+        }
+        builder.setNegativeButton("NO"){dialoginterface:DialogInterface,i:Int->
+
+        }
+        val builder1=builder.create()
+        builder1.show()
     }
     private fun setQuestion(){
         defaultoptionsview()
