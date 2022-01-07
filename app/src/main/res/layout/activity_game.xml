@@ -139,9 +139,6 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="305dp"
         android:layout_height="53dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="637dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
