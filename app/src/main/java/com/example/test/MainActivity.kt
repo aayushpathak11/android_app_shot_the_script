@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         btn.setOnClickListener(){
 
             if(status==0) {
-                btn.setImageResource(R.drawable.ic_med_difficulty)
+                btn.setImageResource(drawable.ic_med_difficulty)
                 status = 1
             }
             else if(status==1) {

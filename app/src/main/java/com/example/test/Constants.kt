@@ -1,6 +1,7 @@
 package com.example.test
 import kotlin.random.Random
 object Constants{
+
     fun getQuestions():ArrayList<Question>{
         val questionlistprimary=ArrayList<Question>()
         val questionsList = ArrayList<Question>()
