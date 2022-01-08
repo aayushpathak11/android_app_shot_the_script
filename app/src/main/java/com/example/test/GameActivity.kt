@@ -57,6 +57,10 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         builder1.show()
     }
     private fun setQuestion(){
+        op1.isEnabled=true
+        op2.isEnabled=true
+        op3.isEnabled=true
+        op4.isEnabled=true
         defaultoptionsview()
         if(mcurrentPosition==mQuestionList!!.size){
             btnsubmit.text="FINISH"
@@ -132,6 +136,10 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
                         mCorrectAnswers++
                     }
                     answerview(question.correctAnswer,R.drawable.correct_option)
+                    op1.isEnabled=false
+                    op2.isEnabled=false
+                    op3.isEnabled=false
+                    op4.isEnabled=false
                     if(mcurrentPosition==mQuestionList!!.size){
                         btnsubmit.text="FINISH"
                     }else{
