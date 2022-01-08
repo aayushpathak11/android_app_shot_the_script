@@ -1,24 +1,29 @@
 package com.example.test
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.text.TextRunShaper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.widget.Button
+import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.layout_popup.*
 
 class GameActivity : AppCompatActivity(), View.OnClickListener {
     private var mcurrentPosition:Int=1
     private var mQuestionList:ArrayList<Question>?=null
     private var mSelectedOption:Int = 0
     private var mCorrectAnswers:Int=0
-    private var count:Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -75,6 +80,7 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     override fun onClick(p0: View?) {
         when(p0?.id){
             R.id.op1->{
@@ -95,8 +101,24 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
                     when {
                         mcurrentPosition <= mQuestionList!!.size -> {
                             setQuestion()
-                        }else->{
-                            Toast.makeText(this,"finished",Toast.LENGTH_SHORT).show()
+                        }else-> {
+                        val window = PopupWindow(this)
+                        val view = layoutInflater.inflate(R.layout.layout_popup,null)
+                        window.contentView=view
+                        val btnok:Button=view.findViewById(R.id.btnok)
+                        val tv:TextView=view.findViewById(R.id.tv_score)
+                        tv.text="SCORE: $mCorrectAnswers/5"
+                        btnok.setOnClickListener(){
+                            finish()
+                            window.dismiss()
+
+                        }
+                        window.setBackgroundDrawable(getDrawable(R.drawable.popup_background))
+                        window.showAtLocation(btnsubmit,Gravity.CENTER,0,0)
+                        window.isFocusable
+
+
+
                         }
                     }
                 }else{

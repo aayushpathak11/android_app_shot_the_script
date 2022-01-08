@@ -9,6 +9,7 @@
     android:padding="16dp"
     tools:context=".GameActivity">
 
+
     <TextView
         android:id="@+id/tv1"
         android:layout_width="0dp"
