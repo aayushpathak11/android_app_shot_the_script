@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.test.R.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,8 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
-
-        var btn:ImageButton = findViewById(id.btn);
+        val btn:ImageButton = findViewById(id.btn);
         var status= 0;
         btn.setOnClickListener(){
 
