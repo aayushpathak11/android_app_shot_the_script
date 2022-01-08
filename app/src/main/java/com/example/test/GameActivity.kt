@@ -15,6 +15,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.layout_popup.*
 
@@ -54,6 +57,10 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         builder1.show()
     }
     private fun setQuestion(){
+        op1.isEnabled=true
+        op2.isEnabled=true
+        op3.isEnabled=true
+        op4.isEnabled=true
         defaultoptionsview()
         if(mcurrentPosition==mQuestionList!!.size){
             btnsubmit.text="FINISH"
@@ -116,9 +123,9 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
                         window.setBackgroundDrawable(getDrawable(R.drawable.popup_background))
                         window.showAtLocation(btnsubmit,Gravity.CENTER,0,0)
                         window.isFocusable
-
-
-
+                        blur_image.visibility=View.VISIBLE
+                        btnsubmit.visibility=View.INVISIBLE
+                        btnhint.visibility=View.INVISIBLE
                         }
                     }
                 }else{
@@ -129,6 +136,10 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
                         mCorrectAnswers++
                     }
                     answerview(question.correctAnswer,R.drawable.correct_option)
+                    op1.isEnabled=false
+                    op2.isEnabled=false
+                    op3.isEnabled=false
+                    op4.isEnabled=false
                     if(mcurrentPosition==mQuestionList!!.size){
                         btnsubmit.text="FINISH"
                     }else{
