@@ -26,7 +26,10 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
     private var mQuestionList:ArrayList<Question>?=null
     private var mSelectedOption:Int = 0
     private var mCorrectAnswers:Int=0
-
+    private var mCheck1:Boolean=false
+    private var mCheck2:Boolean=false
+    private var mCheck3:Boolean=false
+    private var mCheck4:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -57,6 +60,10 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         builder1.show()
     }
     private fun setQuestion(){
+        mCheck1=false
+        mCheck2=false
+        mCheck3=false
+        mCheck4=false
         op1.isEnabled=true
         op2.isEnabled=true
         op3.isEnabled=true
@@ -91,16 +98,56 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when(p0?.id){
             R.id.op1->{
-                selectedoptionview(op1,1)
+                mCheck4=false
+                mCheck3=false
+                mCheck2=false
+                if(mCheck1==false){
+                    selectedoptionview(op1,1)
+                    mCheck1=true
+                }else{
+                    defaultoptionsview()
+                    mSelectedOption=0
+                    mCheck1=false
+                }
             }
             R.id.op2->{
-                selectedoptionview(op2,2)
+                mCheck4=false
+                mCheck3=false
+                mCheck1=false
+                if(mCheck2==false){
+                    selectedoptionview(op2,2)
+                    mCheck2=true
+                }else{
+                    defaultoptionsview()
+                    mSelectedOption=0
+                    mCheck2=false
+                }
             }
             R.id.op3->{
-                selectedoptionview(op3,3)
+                mCheck4=false
+                mCheck1=false
+                mCheck2=false
+                if(mCheck3==false){
+                    selectedoptionview(op3,3)
+                    mCheck3=true
+                }else{
+                    defaultoptionsview()
+                    mSelectedOption=0
+                    mCheck3=false
+                }
             }
             R.id.op4->{
-                selectedoptionview(op4,4)
+                mCheck1=false
+                mCheck3=false
+                mCheck2=false
+                if(mCheck4==false){
+                    selectedoptionview(op4,4)
+                    mCheck4=true
+                }else{
+                    defaultoptionsview()
+                    mSelectedOption=0
+                    mCheck4=false
+                }
             }
             R.id.btnsubmit->{
                 if(mSelectedOption==0){
@@ -118,7 +165,6 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
                         btnok.setOnClickListener(){
                             finish()
                             window.dismiss()
-
                         }
                         window.setBackgroundDrawable(getDrawable(R.drawable.popup_background))
                         window.showAtLocation(btnsubmit,Gravity.CENTER,0,0)
@@ -172,6 +218,5 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         v.setTextColor(Color.parseColor("#363A43"))
         v.setTypeface(v.typeface,Typeface.BOLD)
         v.background=ContextCompat.getDrawable(this,R.drawable.selected_option)
-
     }
 }
